@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>CSS en línea uwu</title>
+    <style>
+        /* Parallax Effect */
+        .parallax {
+            position: relative;
+            overflow: hidden;
+            background-attachment: fixed; /* Fijar el fondo al hacer scroll */
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Ocupa todo el alto de la ventana */
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 1;
+            padding: 50px 20px;
+            color: white;
+            font-size: 2em;
+            text-align: center; /* Alineación del contenido */
+        }
+
+        /* Resto de los estilos */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e0d4f7;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #2c3e50;
+            position: relative;
+            min-height: 100vh;
+            padding-bottom: 50px; /* Añadido para que el contenido no se corte */
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.7); /* Fondo ligeramente transparente para resaltar */
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px;
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px; /* Para no quedar pegado al principio */
+        }
+
+        h1 {
+            color: #3c0155;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #2b013b;
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2d3436;
+        }
+
+        .gif-block {
+            background-image: url('./imagenes/niconii2.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 200px 200px;
+            height: 250px;
+            border: 2px dashed #8e44ad;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 1.2em;
+            color: #2c3e50;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 40px;
+        }
+
+        .gif-block button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            background-color: #ffccf9;
+            color: #6c3483;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            margin-top: 15px;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+
+        .gif-block button:hover {
+            transform: scale(1.1);
+            background-color: #f8a5ff;
+        }
+
+        .gif-block span {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #6c3483;
+        }
+
+        .info-css {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #6c3483;
+            padding: 30px;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 350px;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-css h3 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #8e44ad;
+        }
+
+        .info-css p {
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+
+        /* Burbujas de tips */
+        .tooltip {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            display: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Parallax Effect con el gif de fondo -->
+    <div class="parallax" style="background-image: url('./imagenes/niconii.gif');">
+        <div class="parallax-content">
+            <h1>ACT CSS</h1>
+            <h2>HTML sirve para hacer páginas web por más tontas que sean, como este ejemplo</h2>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <div class="gif-block">
+            <span>Nico Nico Nii~ ✨</span>
+            <button onclick="reproducirNico(this);">
+                ▶ Reproducir NicoNii
+            </button>
+        </div>
+
+        <div class="info-css">
+            <h3>¿Qué es CSS?</h3>
+            <p>CSS es el lenguaje utilizado para dar estilo a las páginas web. A través de CSS, puedes cambiar los colores, fuentes, disposición y muchos otros aspectos visuales de tu página.</p>
+        </div>
+    </div>
+
+    <!-- Otra sección para mostrar más contenido con parallax -->
+    <div class="parallax" style="background-image: url('./imagenes/shinji.gif');">
+
+
+    <!-- Tips Flotantes -->
+    <div class="tooltip" id="tooltip"></div>
+
+    <!-- Audio escondido -->
+    <audio id="nicoAudio" src="./audio/nico.mp3"></audio>
+
+    <script>
+        // Función de reproducir y pausar audio
+        function reproducirNico(boton) {
+            const audio = document.getElementById('nicoAudio');
+
+            if (audio.paused) {
+                audio.play().then(() => {
+                    boton.textContent = "⏸ Pausar NicoNii";
+                    alert("¡Nico activado! 🌟");
+                }).catch((error) => {
+                    console.error("Error al reproducir el audio:", error);
+                    alert("No se pudo reproducir el audio.");
+                });
+            } else {
+                audio.pause();
+                boton.textContent = "▶ Reproducir NicoNii";
+                alert("¡Nico pausado! 💤");
+            }
+
+            const colores = ['#ffccf9', '#c1f0f6', '#f6e1ff', '#f9f3cc', '#d7f9e3', '#ffd6e8'];
+            const randomColor = colores[Math.floor(Math.random() * colores.length)];
+            boton.style.backgroundColor = randomColor;
+        }
+
+        // Mostrar y ocultar tips flotantes
+        const tooltip = document.getElementById('tooltip');
+        document.querySelectorAll('button').forEach((element) => {
+            element.addEventListener('mouseover', () => {
+                tooltip.textContent = "Haz clic para reproducir/pausar el audio";
+                tooltip.style.display = 'block';
+                tooltip.style.top = `${element.getBoundingClientRect().top - 50}px`;
+                tooltip.style.left = `${element.getBoundingClientRect().left + element.offsetWidth / 2 - tooltip.offsetWidth / 2}px`;
+            });
+            element.addEventListener('mouseout', () => {
+                tooltip.style.display = 'none';
+            });
+        });
+
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const parallax = document.querySelectorAll('.parallax');
+            parallax.forEach((element) => {
+                const scrollPosition = window.pageYOffset;
+                element.style.backgroundPosition = `center ${scrollPosition * 0.5}px`; // Efecto de velocidad del fondo
+            });
+        });
+    </script>
+
+</body>
+</html>
